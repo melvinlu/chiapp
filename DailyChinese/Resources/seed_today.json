@@ -1,0 +1,45 @@
+{
+  "date": "2025-08-17",
+  "sentences": [
+    {
+      "id": "20250817-01",
+      "hanzi": "我在北京工作了三年，现在想回家乡发展。",
+      "pinyin": "Wǒ zài Běijīng gōngzuòle sān nián, xiànzài xiǎng huí jiāxiāng fāzhǎn.",
+      "english": "I've worked in Beijing for three years, and now I want to go back to my hometown to develop my career.",
+      "indexInPack": 1,
+      "audioAssetName": null
+    },
+    {
+      "id": "20250817-02",
+      "hanzi": "这道菜有点儿咸，不过味道还不错。",
+      "pinyin": "Zhè dào cài yǒu diǎnr xián, búguò wèidào hái búcuò.",
+      "english": "This dish is a bit salty, but the flavor is still pretty good.",
+      "indexInPack": 2,
+      "audioAssetName": null
+    },
+    {
+      "id": "20250817-03",
+      "hanzi": "由于交通堵塞，我迟到了半个小时。",
+      "pinyin": "Yóuyú jiāotōng dǔsè, wǒ chídàole bàn gè xiǎoshí.",
+      "english": "Due to traffic congestion, I was half an hour late.",
+      "indexInPack": 3,
+      "audioAssetName": null
+    },
+    {
+      "id": "20250817-04",
+      "hanzi": "她不仅会说英语，还会说法语和德语。",
+      "pinyin": "Tā bùjǐn huì shuō Yīngyǔ, hái huì shuō Fǎyǔ hé Déyǔ.",
+      "english": "She not only speaks English, but also speaks French and German.",
+      "indexInPack": 4,
+      "audioAssetName": null
+    },
+    {
+      "id": "20250817-05",
+      "hanzi": "虽然今天下雨，但是我们的计划不会改变。",
+      "pinyin": "Suīrán jīntiān xiàyǔ, dànshì wǒmen de jìhuà bù huì gǎibiàn.",
+      "english": "Although it's raining today, our plans won't change.",
+      "indexInPack": 5,
+      "audioAssetName": null
+    }
+  ]
+}
