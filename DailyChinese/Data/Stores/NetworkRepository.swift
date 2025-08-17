@@ -263,18 +263,7 @@ final class NetworkRepository: SentenceStore {
     }
     
     private func getOpenAIAPIKey() -> String? {
-        // Try to get from environment variables first
-        if let apiKey = ProcessInfo.processInfo.environment["OPENAI_API_KEY"] {
-            return apiKey
-        }
-        
-        // Try to get from UserDefaults (for user-configured keys)
-        if let apiKey = UserDefaults.standard.string(forKey: "openai_api_key") {
-            return apiKey
-        }
-        
-        // Hardcoded API key
-        return "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"
+        return AppConfig.shared.openAIAPIKey
     }
     
     private func fetchFromChinesePod() async throws -> [SentenceEntity] {

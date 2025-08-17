@@ -69,12 +69,44 @@ struct AppConfig {
     }
     
     var openAIAPIKey: String? {
-        // Return preloaded API key if no user-configured key exists
+        // Return user-configured key if exists
         if let userKey = UserDefaults.standard.string(forKey: "openai_api_key") {
             return userKey
         }
-        // Preloaded API key
-        return "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"
+        // Try to load from config file
+        return loadAPIKeyFromConfig()
+    }
+    
+    private func loadAPIKeyFromConfig() -> String? {
+        guard let configPath = Bundle.main.path(forResource: "config", ofType: "json") else {
+            // Try to load from app directory
+            let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            let configURL = documentsPath?.appendingPathComponent("config.json")
+            
+            // Try current working directory for development
+            let currentDirURL = URL(fileURLWithPath: "config.json")
+            
+            for url in [configURL, currentDirURL].compactMap({ $0 }) {
+                if FileManager.default.fileExists(atPath: url.path) {
+                    return loadConfigFromURL(url)
+                }
+            }
+            return nil
+        }
+        
+        let configURL = URL(fileURLWithPath: configPath)
+        return loadConfigFromURL(configURL)
+    }
+    
+    private func loadConfigFromURL(_ url: URL) -> String? {
+        do {
+            let data = try Data(contentsOf: url)
+            let config = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return config?["openai_api_key"] as? String
+        } catch {
+            print("Failed to load config: \(error)")
+            return nil
+        }
     }
     
     func setOpenAIAPIKey(_ key: String) {

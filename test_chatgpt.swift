@@ -2,7 +2,27 @@
 
 import Foundation
 
-let apiKey = "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"
+func getAPIKey() -> String? {
+    // Try to load from config file
+    let currentDirURL = URL(fileURLWithPath: "config.json")
+    
+    if FileManager.default.fileExists(atPath: currentDirURL.path) {
+        do {
+            let data = try Data(contentsOf: currentDirURL)
+            let config = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return config?["openai_api_key"] as? String
+        } catch {
+            print("Failed to load config: \(error)")
+            return nil
+        }
+    }
+    return nil
+}
+
+guard let apiKey = getAPIKey() else {
+    print("❌ No API key found in config.json")
+    exit(1)
+}
 
 struct OpenAIRequest: Codable {
     let model: String
