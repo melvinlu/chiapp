@@ -35,6 +35,8 @@
 		1A1A1A1A1A1A1A1A1A1A1A33 /* HybridTTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A2A2A2A2A2A2A2A2A2A43 /* HybridTTSService.swift */; };
 		fb099265924345b8a30a3830 /* SpeechRecognitionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53d987e0b4c849aeb4d0032b /* SpeechRecognitionService.swift */; };
 		aa6b803a6b7e43c6927e5534 /* PronunciationGradingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5f172f89dfad4f24a7367684 /* PronunciationGradingService.swift */; };
+		BB1A1A1A1A1A1A1A1A1A1A34 /* SingleSentenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2A2A2A2A2A2A2A2A2A2A44 /* SingleSentenceView.swift */; };
+		BB1A1A1A1A1A1A1A1A1A1A35 /* SingleSentenceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2A2A2A2A2A2A2A2A2A2A45 /* SingleSentenceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		5A5A5A5A5A5A5A5A5A5A5A5B /* DailyChinese.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyChinese.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A6A6A6A6A6A6A6A6A6A6A6A /* DailyChineseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DailyChineseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7A7A7A7A7A7A7A7A7A7A7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC2A2A2A2A2A2A2A2A2A2A44 /* SingleSentenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSentenceView.swift; sourceTree = "<group>"; };
+		CC2A2A2A2A2A2A2A2A2A2A45 /* SingleSentenceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSentenceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 				BBBBBBBBBBBBBBBBBBBBBB03 /* Recording */,
 				BBBBBBBBBBBBBBBBBBBBBB04 /* Settings */,
 				BBBBBBBBBBBBBBBBBBBBBB05 /* History */,
+				CC2A2A2A2A2A2A2A2A2A2A44 /* SingleSentenceView.swift */,
+				CC2A2A2A2A2A2A2A2A2A2A45 /* SingleSentenceViewModel.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -410,6 +416,8 @@
 				1A1A1A1A1A1A1A1A1A1A1A33 /* HybridTTSService.swift in Sources */,
 				fb099265924345b8a30a3830 /* SpeechRecognitionService.swift in Sources */,
 				aa6b803a6b7e43c6927e5534 /* PronunciationGradingService.swift in Sources */,
+				BB1A1A1A1A1A1A1A1A1A1A34 /* SingleSentenceView.swift in Sources */,
+				BB1A1A1A1A1A1A1A1A1A1A35 /* SingleSentenceViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

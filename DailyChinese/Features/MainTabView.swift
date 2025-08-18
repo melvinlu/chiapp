@@ -18,6 +18,15 @@ struct MainTabView: View {
                 Label("Today", systemImage: "calendar")
             }
             
+            SingleSentenceView(viewModel: SingleSentenceViewModel(
+                sentenceStore: container.sentenceStore,
+                audioPlayer: container.audioPlayer,
+                tts: container.tts
+            ))
+            .tabItem {
+                Label("Practice", systemImage: "graduationcap")
+            }
+            
             HistoryView(viewModel: HistoryViewModel(
                 sentenceStore: container.sentenceStore,
                 audioPlayer: container.audioPlayer,
