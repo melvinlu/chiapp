@@ -89,9 +89,6 @@ struct SentencesView: View {
                 }
                 
             }
-            .refreshable {
-                await viewModel.refreshDailySentences()
-            }
         }
         .task {
             await loadData()
@@ -127,6 +124,9 @@ struct SentencesView: View {
                 }
             }
             .padding(.vertical)
+        }
+        .refreshable {
+            await viewModel.refreshDailySentences()
         }
     }
     
