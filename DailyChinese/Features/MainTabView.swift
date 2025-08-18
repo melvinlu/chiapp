@@ -24,7 +24,7 @@ struct MainTabView: View {
                 tts: container.tts
             ))
             .tabItem {
-                Label("Practice", systemImage: "graduationcap")
+                Label("Practice", systemImage: "star")
             }
             
             HistoryView(viewModel: HistoryViewModel(

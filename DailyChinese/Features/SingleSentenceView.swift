@@ -2,10 +2,9 @@ import SwiftUI
 
 struct SingleSentenceView: View {
     @StateObject private var viewModel: SingleSentenceViewModel
-    @State private var showEnglish = false
-    @State private var showPinyin = false
     @State private var dragOffset: CGFloat = 0
     @State private var isDragging = false
+    @State private var isFlipped = false
     
     init(viewModel: SingleSentenceViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
@@ -121,90 +120,77 @@ struct SingleSentenceView: View {
     }
     
     private func sentenceCard(_ sentence: SentenceVM) -> some View {
-        VStack(spacing: 24) {
-            chineseText(sentence.hanzi)
-            pinyinSection(sentence.pinyin)
-            englishSection(sentence.english)
-            audioButton
+        ZStack {
+            // Back of card (English, pinyin, sound)
+            if isFlipped {
+                cardBackView(sentence)
+            }
+            
+            // Front of card (Chinese only)
+            if !isFlipped {
+                cardFrontView(sentence)
+            }
         }
         .padding(32)
         .background(cardBackground)
         .padding(.horizontal, 24)
-    }
-    
-    private func chineseText(_ hanzi: String) -> some View {
-        Text(hanzi)
-            .font(.system(size: 36, weight: .medium, design: .serif))
-            .foregroundColor(.white)
-            .multilineTextAlignment(.center)
-            .padding(.horizontal)
-    }
-    
-    private func pinyinSection(_ pinyin: String) -> some View {
-        Group {
-            if showPinyin {
-                Text(pinyin)
-                    .font(.title2)
-                    .foregroundColor(.white.opacity(0.9))
-                    .multilineTextAlignment(.center)
-                    .transition(.opacity.combined(with: .scale))
-            } else {
-                Button("Show Pinyin") {
-                    withAnimation(.easeInOut) {
-                        showPinyin = true
-                    }
-                }
-                .font(.callout)
-                .foregroundColor(.white.opacity(0.7))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(Color.white.opacity(0.1))
-                .cornerRadius(16)
-            }
+        .onTapGesture {
+            isFlipped.toggle()
         }
-        .padding(.horizontal)
     }
     
-    private func englishSection(_ english: String) -> some View {
-        Group {
-            if showEnglish {
-                Text(english)
-                    .font(.title3)
-                    .foregroundColor(.white.opacity(0.9))
-                    .multilineTextAlignment(.center)
-                    .transition(.opacity.combined(with: .scale))
-            } else {
-                Button("Show Translation") {
-                    withAnimation(.easeInOut) {
-                        showEnglish = true
-                    }
-                }
-                .font(.callout)
-                .foregroundColor(.white.opacity(0.7))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(Color.white.opacity(0.1))
-                .cornerRadius(16)
-            }
-        }
-        .padding(.horizontal)
-    }
-    
-    private var audioButton: some View {
-        Button {
-            Task {
-                await viewModel.playAudio()
-            }
-        } label: {
-            Image(systemName: "speaker.wave.2.fill")
-                .font(.title2)
+    private func cardFrontView(_ sentence: SentenceVM) -> some View {
+        VStack {
+            Spacer()
+            
+            Text(sentence.hanzi)
+                .font(.system(size: 36, weight: .medium, design: .serif))
                 .foregroundColor(.white)
-                .frame(width: 50, height: 50)
-                .background(Color.white.opacity(0.2))
-                .cornerRadius(25)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
+            Spacer()
         }
-        .padding(.top, 8)
     }
+    
+    private func cardBackView(_ sentence: SentenceVM) -> some View {
+        VStack(spacing: 20) {
+            // Chinese text (smaller on back)
+            Text(sentence.hanzi)
+                .font(.system(size: 24, weight: .medium, design: .serif))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+            
+            // Pinyin
+            Text(sentence.pinyin)
+                .font(.title3)
+                .foregroundColor(.white.opacity(0.9))
+                .multilineTextAlignment(.center)
+            
+            // English translation
+            Text(sentence.english)
+                .font(.body)
+                .foregroundColor(.white.opacity(0.9))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
+            // Sound button
+            Button {
+                Task {
+                    await viewModel.playAudio()
+                }
+            } label: {
+                Image(systemName: "speaker.wave.2.fill")
+                    .font(.title2)
+                    .foregroundColor(.white)
+                    .frame(width: 50, height: 50)
+                    .background(Color.white.opacity(0.2))
+                    .cornerRadius(25)
+            }
+            .padding(.top, 8)
+        }
+    }
+    
     
     private var cardBackground: some View {
         RoundedRectangle(cornerRadius: 24)
@@ -271,17 +257,11 @@ struct SingleSentenceView: View {
             }
     }
     
-    private func resetViews() {
-        showEnglish = false
-        showPinyin = false
-    }
-    
     private func resetViewsAndPosition() {
         // Immediately reset position without animation
         dragOffset = 0
         isDragging = false
-        showEnglish = false
-        showPinyin = false
+        isFlipped = false
     }
 }
 
